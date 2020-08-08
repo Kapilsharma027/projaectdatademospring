@@ -38,7 +38,11 @@ public Topic getTopicById(String id){
 // it will simple add in array topics
 public void addTopic(Topic topic ){
 //	topics.add(topic);
-	topicRepository.save(topic);
+	Topic t = new Topic();
+
+	t.setName(topic.getName());
+	t.setDescription(topic.getDescription());
+	topicRepository.save(t);
 }
 
 public void updateTopic(Topic topic, String id) {

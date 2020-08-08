@@ -44,7 +44,7 @@ import pacakge.project.topic.Topic;
  * @RequestBody defines the to type of object in body will accept. 
 */	@ApiOperation(value = "add Course by topic id")
 	@RequestMapping(method = RequestMethod.POST, value = "/topics/{topicId}/courses")
-	public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
+	public void addCourse(@RequestBody Course course, @PathVariable Integer topicId) {
 		// Just make sure to topic id 
 		course.setTopic(new Topic(topicId, "", ""));
 		// and than it will replace it
@@ -55,7 +55,7 @@ import pacakge.project.topic.Topic;
 */
     @ApiOperation(value = "Update Course by topic id")
 	@RequestMapping(method = RequestMethod.PUT, value = "/topics/{topicId}/courses/{id}")
-	public void upDateCourse(@RequestBody Course course, @PathVariable String id, @PathVariable String topicId) {
+	public void upDateCourse(@RequestBody Course course, @PathVariable Integer id, @PathVariable Integer topicId) {
 		// Just make sure to topic id 
 				course.setTopic(new Topic(topicId, "", ""));
 		courseServce.updateCourse(course);

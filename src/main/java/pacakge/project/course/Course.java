@@ -1,6 +1,8 @@
 package pacakge.project.course;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -10,7 +12,8 @@ import pacakge.project.topic.Topic;
 public class Course {
 //Id is used to define which key is primary.
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String name;
 	private String description;
 // create an instance of Topic to tie it with Topic	
@@ -18,10 +21,10 @@ public class Course {
 	@ManyToOne
 	private Topic topic;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -30,7 +33,7 @@ public class Course {
 	
 	public Course() {
 	}
-	public Course(String id, String name, String description, String topicid) {
+	public Course(Integer id, String name, String description, Integer topicid) {
 		super();
 		this.id = id;
 		this.name = name;
