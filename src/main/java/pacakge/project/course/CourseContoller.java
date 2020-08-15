@@ -19,7 +19,7 @@ import pacakge.project.topic.Topic;
 	 
 	@ApiOperation(value = "Get All Courses  by topic's id")
 	@RequestMapping(method = RequestMethod.GET, value ="/topics/{id}/course")
-    public List<Course> getCourse(@PathVariable String id) {
+    public List<Course> getCourse(@PathVariable Integer id) {
 		return courseServce.getAllCourses(id);
 	}
 	/*
@@ -33,7 +33,7 @@ import pacakge.project.topic.Topic;
 	*/
 	 @ApiOperation(value = "Get Course  by course id")
 	@RequestMapping(method = RequestMethod.GET, value ="/topics/{topicid}/courses/{courseid}")
-	public Course getCourseById(@PathVariable String topicid, @PathVariable String courseid) {
+	public Course getCourseById(@PathVariable String topicid, @PathVariable Integer courseid) {
 		return courseServce.getCourseById(courseid);
 		
 	}
@@ -65,7 +65,7 @@ import pacakge.project.topic.Topic;
 	*/
         @ApiOperation(value = "Delete Course  by topic id")
 		@RequestMapping(method = RequestMethod.DELETE, value = "/topics/{topicId}/courses/{id}")
-		public void deleteCourse(@PathVariable String id) {
+		public void deleteCourse(@PathVariable Integer id) {
 			courseServce.delete(id);
 		}
  }

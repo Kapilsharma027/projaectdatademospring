@@ -66,7 +66,7 @@ public class TopicContoller {
 	*/
     @ApiOperation(value = "Get All Topics by Id")
 	@RequestMapping(value = "/topics/{id}",  method = RequestMethod.GET)
-	public Topic getTopicById(@PathVariable String id) {
+	public Topic getTopicById(@PathVariable Integer id) {
 		return TopicServce.getTopicById(id);
 		
 	}
@@ -94,7 +94,7 @@ public class TopicContoller {
 	*/
     @ApiOperation(value = "Delete Topic by Id")
 		@RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
-		public void deleteTopic(@PathVariable String id) {
+		public void deleteTopic(@PathVariable Integer id) {
 			TopicServce.delete(id);
 		}
  }

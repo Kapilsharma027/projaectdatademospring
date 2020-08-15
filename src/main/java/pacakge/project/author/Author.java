@@ -25,7 +25,7 @@ public class Author {
 //Id is used to define which key is primary.
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "first_name")
 	private String firstName;

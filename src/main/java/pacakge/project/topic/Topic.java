@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 //annotation used to declare it is a entity 
@@ -14,6 +15,7 @@ public class Topic {
 //Id is used to define which key is primary.
 	@Id
 	@Column(name = "id")
+//	@OneToMany
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "name")
@@ -24,6 +26,17 @@ public class Topic {
 	@Column(name = "version")
 	private int version;
 	
+	
+	
+	public Topic() {
+	}
+	public Topic(Integer id, String name, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
+	// getters and setters
 	public int getVersion() {
 		return version;
 	}
@@ -39,16 +52,6 @@ public class Topic {
 	public String getName() {
 		return name;
 	}
-	
-	public Topic() {
-	}
-	public Topic(Integer id, String name, String description) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-	}
-	// getters and setters
 	public void setName(String name) {
 		this.name = name;
 	}

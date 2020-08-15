@@ -29,7 +29,7 @@ public List<Topic>getAllTopics(){
 
 // Option is used to get rid from NULL pinter exception
 
-public Topic getTopicById(String id){
+public Topic getTopicById(Integer id){
 //return topics.stream().filter(obj -> obj.getId().equals(id)).findFirst().get();
 	Optional<Topic> topic=	topicRepository.findById(id);
 	return topic.get();
@@ -58,7 +58,7 @@ public void updateTopic(Topic topic, String id) {
 	topicRepository.save(topic);
 }
 // Not need to return any thing here.
-public void delete(String id) {
+public void delete(Integer id) {
 //topics.removeIf(f -> f.getId().equals(id));
 	topicRepository.deleteById(id);
 }

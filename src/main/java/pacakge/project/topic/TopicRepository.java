@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface TopicRepository extends JpaRepository<Topic, String> {
+public interface TopicRepository extends JpaRepository<Topic, Integer> {
 //	  @Query("SELECT t from Topic t Where t.name LIKE '%d%'")
 //		  public List<Topic> findNamedTopics();
 //	  

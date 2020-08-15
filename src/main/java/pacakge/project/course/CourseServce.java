@@ -16,7 +16,7 @@ public class CourseServce {
 	
 
 	
-public List<Course>getAllCourses(String id){
+public List<Course>getAllCourses(Integer id){
 //return topics;
 	// doing it by using repository
 	List<Course> courses = new ArrayList<>();
@@ -30,7 +30,7 @@ public List<Course>getAllCourses(String id){
 
 // Option is used to get rid from NULL pinter exception
 
-public Course getCourseById(String id){
+public Course getCourseById(Integer id){
 //return topics.stream().filter(obj -> obj.getId().equals(id)).findFirst().get();
 	Optional<Course> course =	courseRepository.findById(id);
 	return course.get();
@@ -55,7 +55,7 @@ public void updateCourse(Course course) {
 	courseRepository.save(course);
 }
 // Not need to return any thing here.
-public void delete(String id) {
+public void delete(Integer id) {
 //topics.removeIf(f -> f.getId().equals(id));
 	courseRepository.deleteById(id);
 }
