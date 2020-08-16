@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "addresses_otm")
 public class Addressotm implements Serializable {
@@ -25,9 +23,8 @@ public class Addressotm implements Serializable {
     private String state;
     private String zipCode;
     private String country;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+ 
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Userotm userotm;
 

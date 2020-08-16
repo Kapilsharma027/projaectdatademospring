@@ -1,13 +1,12 @@
 package pacakge.project.one_to_many;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +27,9 @@ public class Userotm implements Serializable {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "userotm", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Addressotm> addressotm;
+    
+    @OneToMany(mappedBy = "userotm", cascade = CascadeType.ALL, orphanRemoval=true)
+    private Set<Addressotm> addressotm = new HashSet<Addressotm>();
 
   
     public Userotm() {

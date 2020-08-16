@@ -1,6 +1,7 @@
 package pacakge.project.one_to_many;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -14,28 +15,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class UserotmDto implements Serializable {
-
-
-
 	private String name;
     private String email;
     private String password;
-  
-    private Set<Addressotm> addressotm;
+    private Set<AddressotmDto> addressotmDto = Collections.<AddressotmDto>emptySet();
 
   
     public UserotmDto() {
 		super();
 	}
     
-	public UserotmDto(String name, String email, String password, Set<Addressotm> addressotm) {
+	public UserotmDto(String name, String email, String password, Set<AddressotmDto> addressotmDto) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.addressotm = addressotm;
+		this.addressotmDto = addressotmDto;
 	}
 	public String getName() {
 		return name;
@@ -60,12 +59,15 @@ public class UserotmDto implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Set<Addressotm> getAddressotm() {
-		return addressotm;
+
+	public Set<AddressotmDto> getAddressotmDto() {
+		return addressotmDto;
 	}
-	public void setAddressotm(Set<Addressotm> addressotm) {
-		this.addressotm = addressotm;
+
+	public void setAddressotmDto(Set<AddressotmDto> addressotmDto) {
+		this.addressotmDto = addressotmDto;
 	}
+
 
 
 

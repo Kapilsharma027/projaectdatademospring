@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class AddressotmDto implements Serializable {
 	
@@ -19,17 +21,20 @@ public class AddressotmDto implements Serializable {
     private String state;
     private String zipCode;
     private String country;
-    
+    @JsonIgnore
+	private UserotmDto userotmDto;
+	
 	public AddressotmDto() {
 		super();
 	}
-	public AddressotmDto(String street, String city, String state, String zipCode, String country) {
+	public AddressotmDto(String street, String city, String state, String zipCode, String country, UserotmDto userotmDto) {
 		super();
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zipCode = zipCode;
 		this.country = country;
+		this.userotmDto = userotmDto;
 	}
 	public String getStreet() {
 		return street;
@@ -61,6 +66,13 @@ public class AddressotmDto implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-  
+	public UserotmDto getUserotmDto() {
+		return userotmDto;
+	}
+	public void setUserotmDto(UserotmDto userotmDto) {
+		this.userotmDto = userotmDto;
+	}
+   
+
 
 }

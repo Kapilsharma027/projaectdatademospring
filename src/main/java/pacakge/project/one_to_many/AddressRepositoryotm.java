@@ -1,7 +1,7 @@
 package pacakge.project.one_to_many;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AddressRepositoryotm extends CrudRepository<Addressotm, Long> {
+public interface AddressRepositoryotm extends JpaRepository<Addressotm, Long> {
 
 }

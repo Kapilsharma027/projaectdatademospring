@@ -26,13 +26,22 @@ public class OneToManyController {
 	private OneToManyService oneToManyService;
 
 	@RequestMapping(value = "/users",  method = RequestMethod.GET)
-    public List<Userotm> getUsers() {
+    public List<UserotmDto> getUsers() {
+//		List<Userotm> users = new ArrayList<>();
+//		users = userRepository.findAll();
+//		return users;
 		return oneToManyService.getAllUser();
 	}
 	
 	@RequestMapping(value = "/users/{id}",  method = RequestMethod.GET)
-    public Optional<Userotm> getUser(@PathVariable Long id) {
-		return userRepository.findById(id);
+    public UserotmDto getUser(@PathVariable Long id) {
+		
+		Userotm user = userRepository.getOne(id);
+		UserotmDto userDto= new UserotmDto();
+		userDto = UserMapper.toDto(user);
+		 return userDto;
+//		return userRepository.findById(id);
+		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/user")
@@ -43,7 +52,7 @@ public class OneToManyController {
 		user.setPassword(userdto.getPassword());
 		
 		Set<Addressotm> addressList = new HashSet<>();
-		  for (Addressotm address : userdto.getAddressotm())
+		  for (AddressotmDto address : userdto.getAddressotmDto())
 	        {
 			  Addressotm adrs = new Addressotm();
 			  adrs.setStreet(address.getStreet());
@@ -55,7 +64,6 @@ public class OneToManyController {
 			  addressList.add(adrs);
 	        }
 		  user.setAddressotm(addressList);
-//		  Set<Addressotm> employeeAddressSet = new HashSet();
         userRepository.save(user);
 	}
 	@RequestMapping(method = RequestMethod.DELETE, value = "/user/{id}")
@@ -85,6 +93,22 @@ public class OneToManyController {
 	public void deleteAddress(@PathVariable Long id) {
 		addressRepository.deleteById(id);
 	}
-
-
+// This method is created just to check fetch type
+	@RequestMapping(value = "/usersf",  method = RequestMethod.GET)
+    public void getUsersf() {
+		List<Userotm> users = new ArrayList<>();
+		users = userRepository.findAll();
+		users.forEach(System.out::println);
+//		return oneToManyService.getAllUser();
+	}
+	
+	// This method is created just to check fetch type
+	@RequestMapping(value = "/usersf/{id}",  method = RequestMethod.GET)
+    public Optional<Userotm> getUserf(@PathVariable Long id) {
+		
+		return userRepository.findById(id);
+//		user.forEach(System.out::println);
+//		return userRepository.findById(id);
+		
+	}
 }
