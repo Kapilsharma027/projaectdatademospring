@@ -32,38 +32,30 @@ public class Author {
 	@Column(name = "last_name")
 	private String lastName;
 	@Column(name = "dob")
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
+	
 	private Date DOB;
 	@Column(name = "mobile")
 	private Long mobile;
-	
+
 	@Column(name = "result")
 	@Enumerated(EnumType.STRING)
 	private Result result;
-	
 
-	public Author(Integer id, String firstName, String lastName, Date dOB, Long mobile, Result result) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		DOB = dOB;
-		this.mobile = mobile;
-		this.result = result;
-	}
 	public Author() {
 		super();
-		
+	
 	}
-
-	public Result getResult() {
-		return result;
+	public Author(Integer id, String firstName, String lastName, Date dOB, Long mobile, Result result) {
+	super();
+	this.id = id;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.DOB = dOB;
+	this.mobile = mobile;
+	this.result = result;
 	}
-
-	public void setResult(Result result) {
-		this.result = result;
-	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -93,7 +85,7 @@ public class Author {
 	}
 
 	public void setDOB(Date dOB) {
-		DOB = dOB;
+		this.DOB  = dOB;
 	}
 
 	public Long getMobile() {
@@ -104,4 +96,12 @@ public class Author {
 		this.mobile = mobile;
 	}
 
+	public Result getResult() {
+		return result;
+	}
+
+	public void setResult(Result result) {
+		this.result = result;
+	}
+	
 }

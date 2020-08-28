@@ -28,12 +28,12 @@ public class AuthorContoller {
 		
 		
 		@RequestMapping(method = RequestMethod.POST, value = "/add")
-		public void addTopic(@RequestBody Author authorDate ) {
+		public void addTopic(@RequestBody AuthorDto authorData ) {
 			Author author = new Author();
-			author.setFirstName(authorDate.getFirstName());
-			author.setLastName(authorDate.getLastName());
-			author.setMobile(authorDate.getMobile());
-			author.setDOB(authorDate.getDOB());
+			author.setFirstName(authorData.getFirstName());
+			author.setLastName(authorData.getLastName());
+			author.setMobile(authorData.getMobile());
+			author.setDOB(authorData.getDOB());
 			author.setResult(Result.FAIL);
 			authorRepository.save(author);
 		}	
