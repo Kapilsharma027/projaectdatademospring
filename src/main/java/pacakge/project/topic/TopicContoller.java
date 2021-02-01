@@ -1,10 +1,13 @@
 package pacakge.project.topic;
 
-import java.lang.reflect.Method;
-import java.util.*;
+import java.util.List;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import io.swagger.annotations.ApiOperation;
  // reset controller here convert it in json by itself. 
  @RestController
 public class TopicContoller {
 	 //auto wired is used to inject the service
+	 @Value("${spring.mail.username}")
+	  private String username;
 	 @Autowired
 	 private TopicServce TopicServce;
 	 
@@ -26,6 +32,7 @@ public class TopicContoller {
 	  @Autowired
 	    private JavaMailSender sender;
 	  
+	  Logger logger = LoggerFactory.getLogger(TopicContoller.class);
 	  @ApiOperation(value = "Get All Mail")
 	    @RequestMapping(value ="/sendMail",  method = RequestMethod.GET)
 	    public String sendMail() {
@@ -53,6 +60,12 @@ public class TopicContoller {
     @ApiOperation(value = "Get All Topics")
 	@RequestMapping(value = "/topics",  method = RequestMethod.GET)
     public List<Topic> getTopics() {
+    	logger.trace("A TRACE Message");
+        logger.debug("A DEBUG Message");
+        System.out.println(username);
+        logger.info("An INFO Message" + username);
+        logger.warn("A WARN Message");
+        logger.error("An ERROR Message");
 		return TopicServce.getAllTopics();
 	}
 	/*

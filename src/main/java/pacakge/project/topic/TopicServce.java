@@ -2,9 +2,11 @@ package pacakge.project.topic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 // Service annotation define a class as businees 
@@ -14,7 +16,8 @@ public class TopicServce {
 	@Autowired
 	private TopicRepository topicRepository;
 	
-
+	@Autowired
+	private Topicservice2 topicservice2;
 	
 public List<Topic>getAllTopics(){
 //return topics;
@@ -24,9 +27,42 @@ public List<Topic>getAllTopics(){
 //	Page<Topic> topics =   topicRepository.findAll( PageRequest.of(1, 3));
 	// here findAll in iterable method by default to get all record  for every we are adding by java 8 new syntex.
 	topicRepository.findAll().forEach(topics :: add);
+	   try {
+	 CompletableFuture<Integer> students = asyncGetStudents();
+     CompletableFuture<Integer> offtrackAlertsCount = asyncGetOfftrackCounts();
+	   } catch (Throwable e) {
+           System.out.println(e);
+       }
+	
 	return topics;
 }
 
+
+
+@Async
+public CompletableFuture<Integer> asyncGetOfftrackCounts() {
+	
+System.out.println("^^^^^^^^^^6from asyncGetOfftrackCounts " + Thread.currentThread().getName()); 
+try {
+	Thread.sleep(5000);
+} catch (InterruptedException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+return new AsyncResult<>(10).completable(); 
+}
+
+@Async
+public CompletableFuture<Integer> asyncGetStudents() {
+System.out.println("from asyncGetOfftrackCounts ^^^^^^^^^^"+ Thread.currentThread().getName()); 
+try {
+	Thread.sleep(5000);
+} catch (InterruptedException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+return  new AsyncResult<>(20).completable(); 
+}
 // Option is used to get rid from NULL pinter exception
 
 public Topic getTopicById(Integer id){
